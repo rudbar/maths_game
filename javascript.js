@@ -52,6 +52,8 @@ if (#instruction is clicked) {
 
 var playing = false;
 var score;
+var count = 60;
+var timer;
 
 //if we click on the start/reset button
 document.getElementById("startreset").onclick = function() {
@@ -76,6 +78,19 @@ document.getElementById("startreset").onclick = function() {
 		//change button to reset
 
 		document.getElementById("startreset").innerHTML = "Reset Game";
+
+		timer = setInterval(function() {
+
+			document.getElementById("timeremainingvalue").innerHTML = count;
+			count--;
+			if(count == 0){
+				clearInterval(timer);
+				document.getElementById("timeremainingvalue").innerHTML = 0;
+				document.getElementById("gameOver").style.display = "block";
+				document.getElementById("startreset").innerHTML = "Start Game";
+			}
+
+		}, 1000);
 
 		
 	}
