@@ -73,12 +73,17 @@ document.getElementById("startreset").onclick = function() {
 
 		//show countdown box
 
-		document.getElementById("timeremaining").style.display = "block";
+		show("timeremaining");
 
 		//change button to reset
 
 		document.getElementById("startreset").innerHTML = "Reset Game";
 
+		//genereate a new Q&A
+
+		generateQA();
+
+		//start counter
 		timer = setInterval(function() {
 
 			document.getElementById("timeremainingvalue").innerHTML = count;
@@ -86,13 +91,34 @@ document.getElementById("startreset").onclick = function() {
 			if(count == 0){
 				clearInterval(timer);
 				document.getElementById("timeremainingvalue").innerHTML = 0;
-				document.getElementById("gameOver").style.display = "block";
+				show("gameOver");
+				document.getElementById("gameOver").innerHTML = "<p>GAME OVER!</p><p>YOUR SCORE IS " + score + "</p>";
+				hide("timeremaining");
 				document.getElementById("startreset").innerHTML = "Start Game";
+				hide("correct");
+				hide("wrong");
+				playing = false;
 			}
 
 		}, 1000);
-
 		
 	}
 
+	//hide an element
+	function hide(Id) {
+		document.getElementById(Id).style.display = "none";
+	}
+
+	//show an element
+	function show(Id) {
+		document.getElementById(Id).style.display = "block";
+	}
+
+	//generate question and multiple answers (Q&A)
+
+	function generateQA(){
+
+	}
+
 }
+
